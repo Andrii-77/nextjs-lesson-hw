@@ -1,27 +1,25 @@
 import styles from "./page.module.css";
 import Form from "next/form";
+import {getMeals, saveMeal} from "@/server-actions/serverActions";
 
-export default function Home() {
+export default async function Home() {
+
+    const mealsArray = await getMeals();
+
     return (
         <div className={styles.page}>
-
-            {/*<form action="/submit" method="POST">*/}
-            {/*<form action="/submit">*/}
-            {/*    <input type="text" name={'name'} placeholder={'login'}/>*/}
-            {/*    <input type="text" name={'password'} placeholder={'password'}/>*/}
-            {/*    <button>submit</button>*/}
-            {/*</form>*/}
-
-            <Form action={'/submit'}>
-                <input type="text" name={'name'} placeholder={'login'}/>
+            <Form action={saveMeal}>
+                <input type="text" name={'title'} />
                 <button>send</button>
             </Form>
+        {/*    отримуємо і відтворюємо тут всі meals*/}
+            <div className={'meals'}>
+                {
+                    mealsArray.map(meal => (<div key={meal.id}>{meal.title}</div>))
+                }
+
+            </div>
 
         </div>
     );
 }
-
-//<form action="/submit" method="POST">  - якщо зробити так, щоб інфа не попадала в урлу, то інф-ія буде йти в
-// нікуди. Щоб робити постові запити, які будуть стукатись безпосередньо до сервера, існує сервер екшнс енд
-// мютейшнс. Це про безпеку.
-//Штука зверху викор-ся суто для акумуляції інф-ії.

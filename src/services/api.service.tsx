@@ -1,25 +1,23 @@
 // import {ICar} from "@/models/ICar";
+// import {baseUrl} from "@/constants/urls";
 //
 // export const getAllCars = async (): Promise<ICar[]> => {
-//     const cars = await fetch('http://185.69.152.209/carsAPI/v1/cars')
+//     const cars = await fetch(`${baseUrl}/cars`)
 //         .then(value => value.json());
 //     return cars;
 // }
 //
-// export const addCar = async (car: ICar): Promise<void> => {
-//     const car = await fetch('http://185.69.152.209/carsAPI/v1/cars', {
+// export const addCar = async (car: ICar): Promise<ICar> => {
+//     const res = await fetch(`${baseUrl}/cars`, {
 //         method: 'POST',
 //         headers: {
 //             'Accept': 'application/json',
 //             'Content-Type': 'application/json',
 //         },
-//         body: JSON.stringify({
-//             brand: 'brand',
-//             price: 'price',
-//             year: 'year'
-//         })
+//         body: JSON.stringify({...car}),
 //     });
 //
+//     return res.json();
 // }
 
 import axios from "axios";

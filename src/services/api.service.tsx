@@ -24,9 +24,10 @@
 
 import axios from "axios";
 import {ICar} from "@/models/ICar";
+import {baseUrl} from "@/constants/urls";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://185.69.152.209/carsAPI/v1',
+    baseURL: baseUrl,
     headers: {'Content-Type': 'application/json'},
 });
 
